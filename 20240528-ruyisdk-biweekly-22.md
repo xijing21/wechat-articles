@@ -2,15 +2,19 @@
 
 ## 卷首语
 
+RuyiSDK V0.11 版本已于今日发布。 **RuyiSDK社区首次线下 Meetup 成功举办**。RuyiSDK 包管理器本期重点修复并完善了一些缺陷，同时RuyiSDK 软件源**增加支持了 Pine64 Star64开发板**，此外正在设计第三方系统镜像在如意软件源的二次分发管理（很多系统镜像存放在网盘、Google Drive、MEGA 等平台上，不便于下载）、以及根据源码自构建出的系统镜像的管理（一些开发板未提供二进制，仅提供源码，需要用户自己编译构建系统镜像），后续将为用户提供更方便的镜像服务。
+
+支持矩阵参考 [RISC-V Open Hours ](https://docs.google.com/presentation/d/1wyRJXCn4V3ytT6cIr0VyP6RP_pIPu1yLh5S-mjgLBmY/edit#slide=id.g24406ee815a_0_8)中汇总的RISC-V开发板，针对国外主流开发板进行了补充，此外增补了全志处理器的一些开发板的调研，目前支持矩阵已经覆盖了milkv、矽速、嘉楠、沁恒微电子、全志、芯来 这6家企业几乎全部开发板（已知的）、5款较为流行的国外开发板，已提交调研和测试结果的开发板数量已有49款；RuyiSDK 计划集成所有流行的RISC-V开发板，欢迎大家继续补充遗漏的开发板型号。
+
+RuyiSDK更多进展细节详见下方详情，欢迎大家试用并提供反馈和建议。下一个开发版本 RuyiSDK V0.12 版本将在 6 月 11 日发布。
 
 ## 包管理器
 
-
 ## IDE
 
+基于VSCode IDE，以及包管理器提供的数据接口，初步在VSCode中实现了news、如意软件源工具链、demo等资源的获取，初步可以展示更新信息，软件源工具链资源的选择和安装、基于虚拟环境的demo的编译等初步模块化功能。
 
 ## GCC
-
 
 ## LLVM
 
@@ -31,7 +35,9 @@
   - 重新整理 clang 部分对 RVV intrinsic 的测试用例，使其符合用例规范
 
 ## OpenJDK
+
 1. Proposed JDK-mainline PRs:
+
 - https://github.com/openjdk/jdk/pull/18716 (8329258: TailCall should not use frame pointer register for jump target)
 - https://github.com/openjdk/jdk/pull/18999 (8331281: RISC-V: C2: Support vector-scalar and vector-immediate bitwise logic instructions)
 - https://github.com/openjdk/jdk22u/pull/174 (8330094: RISC-V: Save and restore FRM in the call stub)
@@ -39,6 +45,7 @@
 - https://github.com/openjdk/jdk17u-dev/pull/2442 (8330094: RISC-V: Save and restore FRM in the call stub)
 
 2. Reviewed JDK-mainline PRs:
+
 - https://github.com/openjdk/jdk/pull/18737 (8330095: RISC-V: Remove obsolete vandn_vi instruction)
 - https://github.com/openjdk/jdk/pull/18774 (8330213: RISC-V: C2: assert(false) failed: bad AD file after JDK-8316991)
 - https://github.com/openjdk/jdk/pull/18780 (8330242: RISC-V: Simplify and remove CORRECT_COMPILER_ATOMIC_SUPPORT in atomic_linux_riscv.hpp)
@@ -51,13 +58,13 @@
 - https://github.com/openjdk/jdk/pull/18960 (8331150: RISC-V: Fix "bad AD file" bug)
 - https://github.com/openjdk/jdk/pull/18477 (8327647: Occasional SIGSEGV in markWord::displaced_mark_helper() for SPECjvm2008 sunflow)
 
-
-## V8
-
-
 ## 官网
 
 [RuyiSDK 首次线下 Meetup 圆满结束，下次见！](https://mp.weixin.qq.com/s/wHCKdaZLcEyn7CspkIoEmQ)
+
+如意网站添加统计功能，增加了德语支持。
+
+截止今日5月28日，订阅人数增加14人（由meetup引流），一共32人。如意网站自5月16日添加统计功能后，访问人数177人，访问页面408次。
 
 ## 操作系统支持矩阵
 
