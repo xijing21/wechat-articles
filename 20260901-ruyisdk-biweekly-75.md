@@ -68,7 +68,7 @@ RuyiSDK VSCode IDE 遗留缺陷：
 | [版本切换过程中中英文切换不灵活 #231](https://github.com/ruyisdk/ruyisdk-vscode-extension/issues/231)   | 建议 |   |
 
 ## 社区与内容建设
-
+- 官网软件包查询页面上线：访问路径：在 RuyiSDK 官网菜单中选择“软件包” 即可参看软件包索引仓（packages-index）中的资源信息。 
 
 ### packages-index 资源更新
 
