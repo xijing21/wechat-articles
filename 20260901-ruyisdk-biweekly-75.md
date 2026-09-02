@@ -101,7 +101,7 @@ RuyiSDK 软件的打包与分发工作：目前您可以直接在 GitHub 上查�
 - 完善仓库维护机制：自动生成中英文开发板索引并通过 CI 校验，补充命名、版本与双语文档规范，统一 Ruyi 安装版本引用并建立定期更新机制，同时新增双语覆盖报告。[PR #34](https://github.com/ruyisdk/board-docs/pull/34)、[PR #35](https://github.com/ruyisdk/board-docs/pull/35)、[PR #38](https://github.com/ruyisdk/board-docs/pull/38)、[PR #39](https://github.com/ruyisdk/board-docs/pull/39)、[PR #40](https://github.com/ruyisdk/board-docs/pull/40)
 
 ### 官网&文档
-
+- 官网软件包查询页面上线：访问路径：在 RuyiSDK 官网菜单中选择“[软件包](https://ruyisdk.org/packages/)” 即可参看软件包索引仓（packages-index）中的资源信息。 
 
 ## 基础组件
 
