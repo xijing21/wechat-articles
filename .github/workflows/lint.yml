@@ -16,11 +16,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Check broken links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
-          use-quiet-mode: 'yes'
+          fetch-depth: 0        # 拉全量历史，diff 才能拿到 base commit
+
+      - name: Extract links from changed lines
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+
+          # 取 diff 中所有新增行（-U0 不带上下文行），
+          # 从中提取 http/https 链接，去重后写入 links.txt
+          git diff -U0 "$BASE...$HEAD" -- '*.md' \
+            | grep '^+' | grep -v '^+++' \
+            | grep -oE 'https?://[^ )"'"'"'>]+' \
+            | sed 's/[.,;:!?）)\]]*$//' \
+            | sort -u > links.txt || true
+
+          echo "===== 本次 PR 新增的链接 ====="
+          cat links.txt
+          echo "==============================="
+
+      - name: Install lychee
+        uses: taiki-e/install-action@v2
+        with:
+          tool: lychee
+
+      - name: Check links
+        run: |
+          if [ ! -s links.txt ]; then
+            echo "本次改动中没有新增链接，跳过检查。"
+            exit 0
+          fi
+          lychee --no-progress --timeout 20 --max-retries 2 - < links.txt
 
   notify-on-fail:
     name: notify-on-fail
@@ -45,12 +72,12 @@ jobs:
               body: [
                 `@${author} 自动检查未通过，PR 暂未合入。失败项：`,
                 ``,
-                `- **link-check**（外链有效性检查）— 在 Actions 日志中搜索 "ERROR" 可看到具体失效链接`,
+                `- **link-check**（本次新增链接的有效性检查）`,
                 ``,
                 `**查看详细日志**：${runUrl}`,
                 ``,
-                `注意：偶发的网络超时也会导致链接被误判失效，可去日志确认；`,
-                `若确认是临时网络问题，重新运行检查（Re-run）即可。`,
-                `修复后直接 push 到当前分支即可重新检查，通过后自动合入。`
+                `只检查本次 PR 新增行中的链接，历史内容不受影响。`,
+                `偶发网络超时也可能误报，确认后 Re-run 即可；`,
+                `修复后直接 push 到当前分支，通过后会自动合入。`
               ].join('\n')
             });
